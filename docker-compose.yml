@@ -1,0 +1,23 @@
+elk:
+  image:
+  ports:
+  #elasticsearch
+    - 9200:9200
+  #kibana
+    - 5601:5601
+  #logstash
+    - 5044:5044
+
+filebeat:
+  image:
+  ports:
+    - 9200:9200
+    - 5044:5044
+    - 5601:5601
+  links:
+    - elk
+
+datetime:
+  image: 
+  links:
+    - filebeat
